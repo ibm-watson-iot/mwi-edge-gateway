@@ -11,6 +11,7 @@
 
 # Watson IoT Platform
 WIOTP_ORG=""
+HZN_ORG_ID=""
 WIOTP_DEVICE_TOKEN=""
 WIOTP_DEVICE_TYPE=""
 WIOTP_DEVICE_ID=""
@@ -24,6 +25,10 @@ LOG_TO_CLOUD=true
 LOG_DNA_KEY=""
 # **************************** EDIT END ******************************** #
 
+if [ -z "$HZN_ORG_ID" ]; then      
+  echo "Provide the HZN_ORG_ID, followed by [ENTER]:"
+  read HZN_ORG_ID
+fi
 if [ -z "$WIOTP_ORG" ]; then      
   echo "Provide the ORG of WIOTP, followed by [ENTER]:"
   read WIOTP_ORG
