@@ -100,7 +100,6 @@ export MWI_HOST
 export MWI_TENANT
 export MWI_TENANT_ID
 export TENANT_ID
-export MWI_CONTEXT
 export MWI_USER_ID
 export HORIZON_URL
 
@@ -154,7 +153,7 @@ cat <<EOT >> "${INPUT_FILE}"
                 "WIOTP_DEVICE_PW": "$WIOTP_DEVICE_PW",
                 "WIOTP_ORG": "$WIOTP_ORG",
                 "MWI_USER_ID": "$MWI_USER_ID",
-                "MWI_ORG_KEY": "$MWI_CONTEXT"
+                "MWI_ORG_KEY": "$MWI_ORG_KEY"
               }
           }
       ]
