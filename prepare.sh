@@ -121,3 +121,31 @@ cat <<EOF > /etc/wiotp-edge/routing.json
  "destination": "LOCAL"
  }]
 EOF
+
+
+cat <<EOT >> "${INPUT_FILE}"
+  {
+      "services": [
+          {
+              "org": "$HZN_ORG_ID",
+              "url": "$SERVICE_URL",
+              "versionRange": "$VERSION_RANGE",
+              "variables": {
+                "MWI_TENANT_ID": "$MWI_TENANT_ID",
+                "TENANT_ID": "$MWI_TENANT_ID",
+                "MWI_HOST":"$MWI_HOST",
+                "LOG_DNA_KEY": "$LOG_DNA_KEY",
+                "LOG_TO_CLOUD": "$LOG_TO_CLOUD",
+                "WIOTP_DEVICE_TYPE": "$WIOTP_DEVICE_TYPE",
+                "WIOTP_DEVICE_ID": "$WIOTP_DEVICE_ID",
+                "WIOTP_CLIENT_ID": "$WIOTP_CLIENT_ID",
+                "WIOTP_DEVICE_PW": "$WIOTP_DEVICE_PW",
+                "WIOTP_ORG": "$WIOTP_ORG",
+                "MWI_USER_ID": "$MWI_USER_ID",
+                "MWI_ORG_KEY": "$MWI_CONTEXT"
+              }
+          }
+      ]
+  }
+EOT
+}
