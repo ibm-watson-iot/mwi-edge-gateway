@@ -26,7 +26,7 @@ LOG_DNA_KEY=""
 # **************************** EDIT END ******************************** #
 
 if [ -z "$HZN_ORG_ID" ]; then      
-  echo "Provide the HZN_ORG_ID, followed by [ENTER]:"
+  echo "Provide the HZN_ORG_ID, followed by [ENTER] (default: mycluster):"
   read HZN_ORG_ID
 fi
 if [ -z "$WIOTP_ORG" ]; then      
@@ -59,7 +59,7 @@ if [ -z "$MWI_USER_ID" ]; then
 fi
 
 HZN_API_LISTEN=$(cat /etc/horizon/anax.json | jq -r '.Edge.APIListen' | cut -d ":" -f 2)
-HZN_ORG_ID="${HZN_ORG_ID:-IBM-WorkerInsight}"
+HZN_ORG_ID="${HZN_ORG_ID:mycluster}"
 SERVICE_URL="${SERVICE_URL:-https://internetofthings.ibmcloud.com/service/iot-gateway-client}"
 VERSION_RANGE="${VERSION_RANGE:-[0.0.0,INFINITY)}"
 HZN_API_LISTEN="${HZN_API_LISTEN:-8888}"
@@ -154,3 +154,17 @@ cat <<EOT >> "${INPUT_FILE}"
   }
 EOT
 }
+
+cat <<EOF > ./mwi.node.policy
+{
+    "properties": [
+      {
+        "name": "maximo-worker-insights",
+        "value": true
+      }
+    ],
+    "constraints": [
+      "purpose=mwi-edge-analytics"
+    ]
+  }
+EOF
