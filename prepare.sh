@@ -66,7 +66,7 @@ if [ -z "$MWI_USER_ID" ]; then
 fi
 
 HZN_API_LISTEN=$(cat /etc/horizon/anax.json | jq -r '.Edge.APIListen' | cut -d ":" -f 2)
-HZN_ORG_ID="${HZN_ORG_ID:mycluster}"
+HZN_ORG_ID="${HZN_ORG_ID:-mycluster}"
 SERVICE_URL="${SERVICE_URL:-https://internetofthings.ibmcloud.com/service/iot-gateway-client}"
 VERSION_RANGE="${VERSION_RANGE:-[0.0.0,INFINITY)}"
 HZN_API_LISTEN="${HZN_API_LISTEN:-8888}"
