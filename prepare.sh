@@ -103,7 +103,7 @@ export TENANT_ID
 export MWI_USER_ID
 export HORIZON_URL
 
-cat <<EOF > /etc/wiotp-edge/routing.json
+cat <<EOF > ./routing.json
 [
  {
    "rule_id": 1,
@@ -174,3 +174,5 @@ cat <<EOF > ./mwi.node.policy
     ]
   }
 EOF
+
+echo "copy routing.json to /etc/wiotp-edge/routing.json after wiotp install"
