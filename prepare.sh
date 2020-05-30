@@ -159,7 +159,7 @@ cat <<EOT >> "${INPUT_FILE}"
       ]
   }
 EOT
-}
+
 
 cat <<EOF > ./mwi.node.policy
 {
