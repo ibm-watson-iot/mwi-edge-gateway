@@ -31,7 +31,10 @@ MWI_USER_ID=""
 LOG_TO_CLOUD=true
 LOG_DNA_KEY=""
 # **************************** EDIT END ******************************** #
-
+if [ -z "$MWI_HOST" ]; then      
+  echo "Provide the MWI HOST, followed by [ENTER] (default: iotworkerinsights.ibm.com):"
+  read MWI_HOST
+fi
 if [ -z "$HZN_ORG_ID" ]; then      
   echo "Provide the HZN_ORG_ID, followed by [ENTER] (default: mycluster):"
   read HZN_ORG_ID
