@@ -105,74 +105,75 @@ export HORIZON_URL
 
 cat <<EOF > ./routing.json
 [
- {
-   "rule_id": 1,
-   "matching_filter": "send-to-cloud/iot-2/#",
-   "forward_skip_levels": 1,
-   "destination": "CLOUD"
- },
- {
- "rule_id": 2,
- "matching_filter": "iot-2/type/+/id/+/evt/status/fmt/json",
- "destination": "CLOUD"
- },
- {
- "rule_id": 3,
- "matching_filter": "iotdevice-1/type/+/id/+/add/diag/log",
- "destination": "CLOUD"
- },
- {
- "rule_id": 4,
- "matching_filter": "iot-2/type/+/id/+/evt/hazard/fmt/json",
- "destination": "CLOUD"
- },
- {
- "rule_id": 5,
- "matching_filter": "iot-2/type/+/id/+/evt/+/fmt/json",
- "destination": "LOCAL"
- }]
+  {
+    "rule_id": 1,
+    "matching_filter": "send-to-cloud/iot-2/#",
+    "forward_skip_levels": 1,
+    "destination": "CLOUD"
+  },
+  {
+    "rule_id": 2,
+    "matching_filter": "iot-2/type/+/id/+/evt/status/fmt/json",
+    "destination": "CLOUD"
+  },
+  {
+    "rule_id": 3,
+    "matching_filter": "iotdevice-1/type/+/id/+/add/diag/log",
+    "destination": "CLOUD"
+  },
+  {
+    "rule_id": 4,
+    "matching_filter": "iot-2/type/+/id/+/evt/hazard/fmt/json",
+    "destination": "CLOUD"
+  },
+  {
+    "rule_id": 5,
+    "matching_filter": "iot-2/type/+/id/+/evt/+/fmt/json",
+    "destination": "LOCAL"
+  }
+]
 EOF
 
 
 cat <<EOT >> "${INPUT_FILE}"
   {
-      "services": [
-          {
-              "org": "$HZN_ORG_ID",
-              "url": "$SERVICE_URL",
-              "versionRange": "$VERSION_RANGE",
-              "variables": {
-                "MWI_TENANT_ID": "$MWI_TENANT_ID",
-                "TENANT_ID": "$MWI_TENANT_ID",
-                "MWI_HOST":"$MWI_HOST",
-                "LOG_DNA_KEY": "$LOG_DNA_KEY",
-                "LOG_TO_CLOUD": "$LOG_TO_CLOUD",
-                "WIOTP_DEVICE_TYPE": "$WIOTP_DEVICE_TYPE",
-                "WIOTP_DEVICE_ID": "$WIOTP_DEVICE_ID",
-                "WIOTP_CLIENT_ID": "$WIOTP_CLIENT_ID",
-                "WIOTP_DEVICE_PW": "$WIOTP_DEVICE_PW",
-                "WIOTP_ORG": "$WIOTP_ORG",
-                "MWI_USER_ID": "$MWI_USER_ID",
-                "MWI_ORG_KEY": "$MWI_ORG_KEY"
-              }
-          }
-      ]
-  }
+      "services": [
+          {
+              "org": "$HZN_ORG_ID",
+              "url": "$SERVICE_URL",
+              "versionRange": "$VERSION_RANGE",
+              "variables": {
+                "MWI_TENANT_ID": "$MWI_TENANT_ID",
+                "TENANT_ID": "$MWI_TENANT_ID",
+                "MWI_HOST":"$MWI_HOST",
+                "LOG_DNA_KEY": "$LOG_DNA_KEY",
+                "LOG_TO_CLOUD": "$LOG_TO_CLOUD",
+                "WIOTP_DEVICE_TYPE": "$WIOTP_DEVICE_TYPE",
+                "WIOTP_DEVICE_ID": "$WIOTP_DEVICE_ID",
+                "WIOTP_CLIENT_ID": "$WIOTP_CLIENT_ID",
+                "WIOTP_DEVICE_PW": "$WIOTP_DEVICE_PW",
+                "WIOTP_ORG": "$WIOTP_ORG",
+                "MWI_USER_ID": "$MWI_USER_ID",
+                "MWI_ORG_KEY": "$MWI_ORG_KEY"
+              }
+          }
+      ]
+  }
 EOT
 
 
 cat <<EOF > ./mwi.node.policy
 {
-    "properties": [
-      {
-        "name": "maximo-worker-insights",
-        "value": true
-      }
-    ],
-    "constraints": [
-      "purpose=mwi-edge-analytics"
-    ]
-  }
+    "properties": [
+      {
+        "name": "maximo-worker-insights",
+        "value": true
+      }
+    ],
+    "constraints": [
+      "purpose=mwi-edge-analytics"
+    ]
+  }
 EOF
 
 echo "copy routing.json to /etc/wiotp-edge/routing.json after wiotp install"
